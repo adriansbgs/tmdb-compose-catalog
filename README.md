@@ -2,7 +2,7 @@
 
 Movie catalog Android app built for the Android Engineer technical test, using the TMDB API.
 
-![CI](https://github.com/adriansbgs/Parkee/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/adriansbgs/tmdb-compose-catalog/actions/workflows/ci.yml/badge.svg)
 
 ## Screenshots
 
