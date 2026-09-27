@@ -24,37 +24,37 @@ class MovieMapperTest {
     )
 
     @Test
-    fun `poster path null menghasilkan posterUrl null`() {
+    fun `null poster path results in null posterUrl`() {
         val result = dto(posterPath = null).toDomain()
         assertNull(result.posterUrl)
     }
 
     @Test
-    fun `overview kosong diganti teks default`() {
+    fun `blank overview is replaced with default text`() {
         val result = dto(overview = "").toDomain()
         assertEquals("No overview", result.overview)
     }
 
     @Test
-    fun `posterPath terisi menghasilkan url lengkap`() {
+    fun `posterPath present results in full url`() {
         val result = dto(posterPath = "/abc.jpg").toDomain()
         assertEquals("https://image.tmdb.org/t/p/w342/abc.jpg", result.posterUrl)
     }
 
     @Test
-    fun `release date kosong jadi dash`() {
+    fun `blank release date becomes dash`() {
         val result = dto(releaseDate = "").toDomain()
         assertEquals("-", result.releaseDate)
     }
 
     @Test
-    fun `release date valid diformat`() {
+    fun `valid release date is formatted`() {
         val result = dto(releaseDate = "2022-01-01").toDomain()
         assertEquals("1 Jan 2022", result.releaseDate)
     }
 
     @Test
-    fun `releaseDate format tak dikenal dikembalikan apa adanya`() {
+    fun `unrecognized releaseDate format is returned as is`() {
         val result = dto(releaseDate = "bukan tanggal").toDomain()
         assertEquals("bukan tanggal", result.releaseDate)
     }

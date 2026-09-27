@@ -31,7 +31,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `semua section sukses saat semua request berhasil`() = runTest {
+    fun `all sections succeed when all requests succeed`() = runTest {
         repository.popularResult = DataResult.Success(dummyMovies)
         repository.topRatedResult = DataResult.Success(dummyMovies)
         repository.nowPlayingResult = DataResult.Success(dummyMovies)
@@ -46,7 +46,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `satu section gagal tidak mempengaruhi section lain`() = runTest {
+    fun `one section failing does not affect other sections`() = runTest {
         repository.popularResult = DataResult.Success(dummyMovies)
         repository.topRatedResult = DataResult.Failure(AppError.NoConnection)
         repository.nowPlayingResult = DataResult.Success(dummyMovies)
@@ -60,7 +60,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `retry hanya memuat ulang section yang diminta`() = runTest {
+    fun `retry only reloads the requested section`() = runTest {
         repository.topRatedResult = DataResult.Failure(AppError.NoConnection)
         val viewModel = HomeViewModel(repository)
 
@@ -76,7 +76,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `retry berhasil mengubah section dari error menjadi sukses`() = runTest {
+    fun `retry changes section from error to success`() = runTest {
         repository.topRatedResult = DataResult.Failure(AppError.NoConnection)
         val viewModel = HomeViewModel(repository)
         assertTrue(viewModel.uiState.value.topRated is SectionState.Error)
