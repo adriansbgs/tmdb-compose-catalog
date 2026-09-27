@@ -220,7 +220,7 @@ fun HomeRoute(
         uiState = uiState,
         onMovieClick = onMovieClick,
         onFavoriteListClick = onFavoriteListClick,
-        onRetrySection = viewModel::retrySection,
+        onRetrySection = {type -> viewModel.retrySection(type)},
     )
 }
 
